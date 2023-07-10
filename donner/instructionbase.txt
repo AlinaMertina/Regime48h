@@ -1,0 +1,8 @@
+table -> Categorie_aliment (idcategorie int aut, nomcategorie)
+        Aliment(idaliment,idcategorie ,nomaliment)
+
+commande git
+git stash
+git pull
+git stash apply
+git push
