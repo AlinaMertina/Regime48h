@@ -9,13 +9,16 @@ class CT_CRUD extends CI_Controller {
 	 }
 	public function index()
 	{
+
         $this->load->view('header/Header');
 		$this->load->view('index');
 		$this->load->view('header/Footer');
+
 	}
     public function loadpage($nompage){
         $this->load->view($nompage);
     }	
+
 
     public function loadpageadmin($page){
         $this->load->view('header/Header');
@@ -64,6 +67,8 @@ class CT_CRUD extends CI_Controller {
         $this->loadpageB("inscription",$data);
     }
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public function insertCategorie(){
         if(isset($_POST["categorie"])){
             $tabe= array(array($_POST["categorie"],'%s'));

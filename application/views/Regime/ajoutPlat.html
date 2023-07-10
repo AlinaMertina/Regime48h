@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	
+	<title></title>
+	<!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+        <?php echo base_url(); ?>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/bootstrap.bundle.min.js" defer></script>
+
+
+
+</head>
+<body>
+        <div class="container">
+            <div class="row">
+              
+                    <form method="" action="#" id="form">
+                             
+                                     <div class="row mt-5">
+                                                    <div class="col-lg-6">
+                                                            <label for="plat" class="form-label">Plat</label>
+                                                            <input type="text" class="form-control" id="plat">
+                                                    </div>  
+                                                    <div class="col-lg-6  span1 ">  
+                                                            <button type="submit" class=" btn btn-success btn-small" onclick="ajout()"> <span class=" bi bi-plus "></span></button>
+                                                    </div>
+                                    </div>
+                                            
+                               <!--  -->
+                                <div id="alimentc" style="height: 20%;margin-bottom: 5%;">
+                                        <div class="row mt-5">
+                                            <div class="col-lg-6">
+                                                    <select class="form-select" aria-label="Default select example" name="categorie[]">
+                                                        <option selected>Selectionner Votre Categorie</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                             </div>
+                                    
+                                                <div class="col-lg-6 span2 ">
+                                                        <button type="submit" class="btn btn-danger btn-small "> <spanc class="bi bi-trash "></span></button> 
+                                                </div>
+                                        </div>
+                               <!--  -->
+
+                    
+                                      <div class="row mt-5">
+                                            <div class="col-lg-6">
+                                                    <label for="Aliment" class="form-label">Aliments</label>
+                                                    <input type="text" class="form-control" id="Aliment" name="aliment[]">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                    <label for="plat" class="form-label">Poids</label>
+                                                    <input type="text" class="form-control"id="poids" name="poids[]">
+                                            </div>
+                                      </div>
+                               <!--  -->
+                               <div>
+
+
+                             
+                         </form>
+            
+            </div>
+        </div>
+
+</body>
+<script>
+        function ajout(){
+                var element = document.getElementById("alimentc");
+                const childElement = document.createElement("div");
+                childElement.innerHTML = element.outerHTML;
+                var form =document.getElementById("form");
+                form.appendChild( childElement);
+        }
+</script>

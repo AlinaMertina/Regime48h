@@ -17,11 +17,28 @@ CREATE TABLE utilisateurs (
   FOREIGN key(idgenre)REFERENCES genres(id)
 );
 
+
+
+ 
+ insert into utilisateurs (idutilisateurs,nom,mdp)  values ('UTL00001','Mertina',"mertina44");
+
+ insert INTO genres(nom) VALUES('Homme');
+ insert INTO genres(nom) VALUES('Femme');
+ 
+
+ INSERT INTO utilisateurs (id, nom, taille, mail, idgenre, poids)
+VALUES
+  (1, 'John', 180, 'John@gmail.com', 1, 75),
+  (2, 'Jane ', 165, 'Jane@gmail.com', 2, 62),
+  (3, 'Alex', 175, 'Alex@gmail.com', 1, 80),
+  (4, 'noti ', 155, 'noti@gmail.com', 2, 62),
+  (5, 'tiavina', 185, 'tiavina@gmail.com', 1, 90);
+ 
+
  create table CategorieAliment(
    idCategorie int PRIMARY KEY auto_increment,
    nomCategorie VARCHAR(100)
  );
-
 
 create table Aliment(
   idAliment int PRIMARY key   auto_increment,
@@ -30,7 +47,7 @@ create table Aliment(
   FOREIGN KEY(idCategorie) REFERENCES CategorieAliment(idCategorie) 
 );
 
-insert
+
 create table  Plat(
   idPlat int PRIMARY KEY auto_increment,
   nomPlat VARCHAR(100)
@@ -71,6 +88,7 @@ INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (1, 2, 150);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 3, 100);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 4, 120);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 5, 80);
+
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 6, 90);
 
 
@@ -78,4 +96,3 @@ INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 6, 90);
 #ecc19c
 #000000
 
-http://127.0.0.1/Projet24h/index.php/CT_CRUD/updatacategorie?nom=Fruit&&id=1

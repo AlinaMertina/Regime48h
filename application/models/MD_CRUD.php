@@ -16,6 +16,7 @@ class MD_CRUD extends CI_Model{
         return "( ".$string." )";
     }
 
+
     public function concateValuesupdate($tabe){
         $string ="";
         for($i=0;$i<count($tabe);$i++){
@@ -30,16 +31,19 @@ class MD_CRUD extends CI_Model{
         return $string;
     }
 
+
     public function insert($tableVales,$values){
         $string = $this->concateValues($values);
         $requete="insert into ".$tableVales ." values ".$string ;
         $this->db->query($requete);
     }
+
     public function update($tabeValues,$values,$condition){
         $string=$this->concateValuesupdate($values);
         $requete ="update ".$tabeValues." set ".$string." where ".$condition;
         $this->db->query($requete);
     }
+
     public function  selectAll($nomtable){
         $string ="select * from ".$nomtable;
         $query = $this->db->query($string);
@@ -53,7 +57,7 @@ class MD_CRUD extends CI_Model{
             return false;
         }
     }
-    
+
     public function identifiant(){
         $nom=$this->selectdonner("count(nom) as num","utilisateurs");
         if(count($nom)==0){ return "null" ;}
