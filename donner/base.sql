@@ -19,22 +19,6 @@ CREATE TABLE utilisateurs (
 
 
 
- 
- insert into utilisateurs (idutilisateurs,nom,mdp)  values ('UTL00001','Mertina',"mertina44");
-
- insert INTO genres(nom) VALUES('Homme');
- insert INTO genres(nom) VALUES('Femme');
- 
-
- INSERT INTO utilisateurs (id, nom, taille, mail, idgenre, poids)
-VALUES
-  (1, 'John', 180, 'John@gmail.com', 1, 75),
-  (2, 'Jane ', 165, 'Jane@gmail.com', 2, 62),
-  (3, 'Alex', 175, 'Alex@gmail.com', 1, 80),
-  (4, 'noti ', 155, 'noti@gmail.com', 2, 62),
-  (5, 'tiavina', 185, 'tiavina@gmail.com', 1, 90);
- 
-
  create table CategorieAliment(
    idCategorie int PRIMARY KEY auto_increment,
    nomCategorie VARCHAR(100)
@@ -46,6 +30,8 @@ create table Aliment(
   nomAliment VARCHAR(100),
   FOREIGN KEY(idCategorie) REFERENCES CategorieAliment(idCategorie) 
 );
+
+idCategorie,nomAliment
 
 
 create table  Plat(
@@ -60,36 +46,61 @@ create table  Plat(
    FOREIGN key(idPlat) REFERENCES Plat(idPlat),
    FOREIGN KEY(idAliment) REFERENCES Aliment(idAliment)
  );
-INSERT INTO CategorieAliment (nomCategorie) VALUES ('Fruits');
-INSERT INTO CategorieAliment (nomCategorie) VALUES ('Légumes');
-INSERT INTO CategorieAliment (nomCategorie) VALUES ('Viandes');
-INSERT INTO CategorieAliment (nomCategorie) VALUES ('Poissons');
--- -------------------------------------------------------------
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (1, 'Pomme');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (1, 'Banane');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (2, 'Carotte');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (2, 'Tomate');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (3, 'Bœuf');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (3, 'Poulet');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (4, 'Lait');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (4, 'Fromage');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (5, 'Saumon');
-INSERT INTO Aliment (idCategorie, nomAliment) VALUES (5, 'Thon');
--- -------------------------------------------------------------
-INSERT INTO Plat (nomPlat) VALUES ('Pizza');
-INSERT INTO Plat (nomPlat) VALUES ('Sushi');
-INSERT INTO Plat (nomPlat) VALUES ('Burger');
-INSERT INTO Plat (nomPlat) VALUES ('Pâtes');
-INSERT INTO Plat (nomPlat) VALUES ('Salade');
-INSERT INTO Plat (nomPlat) VALUES ('Steak-frites');
------------------------------------------------------------------
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (1, 1, 200);
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (1, 2, 150);
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 3, 100);
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 4, 120);
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 5, 80);
 
-INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 6, 90);
+
+create table regime(
+  idRegime int PRIMARY key auto_increment,
+  nomRegime VARCHAR(100),
+  nombrejour int
+);
+
+
+
+CREATE TABLE detailRegime (
+  idDetail INT PRIMARY KEY AUTO_INCREMENT,
+  idRegime INT,
+  idPlat INT,
+  NumeroDeJour INT,
+  Heure TIME,
+  FOREIGN KEY (idRegime) REFERENCES regime (idRegime),
+  FOREIGN KEY (idPlat) REFERENCES Plat (idPlat)
+);
+
+create table exercice(
+  idexerice VARCHAR(8),
+  nomexerice VARCHAR(8),
+  unite VARCHAR(7)
+);
+
+
+
+
+delete from exercice wher idexercice not in ('ECX0001','ECX0002','ECX0003','ECX0004','ECX0005')
+
+ECX0001
+ECX0002
+
+
+create table regimePhysique(
+  idregime int,
+  nomregime VARCHAR(50),
+  nombrejour int
+);
+
+create table detaille_regimeP(
+  iddetaille int,
+  idRegime INT,
+  idexerice INT,
+  NumeroDeJour INT,
+  quantiter int,
+  Heure TIME,
+  FOREIGN KEY (idRegime) REFERENCES regimePhysique (idregime),
+  FOREIGN KEY (idPlat) REFERENCES Plat (idPlat)
+);
+
+
+
+
 
 
 #1e847f

@@ -62,13 +62,30 @@ class MD_CRUD extends CI_Model{
         $nom=$this->selectdonner("count(nom) as num","utilisateurs");
         if(count($nom)==0){ return "null" ;}
         $nom=$nom[0];
+        // $nom['num']=$nom['num']+1;
         $identifiantbase="UTL0000";
         $str=strlen($identifiantbase)-1;
         for($i=strlen($nom['num'])-1;$i>-1;$i--){
             $identifiantbase[$str]=$nom['num'][$i];
+            $str=$str-1;
         }
         return  $identifiantbase;
     }
+
+    public function identifiantimage(){
+        $nom=$this->selectdonner("count(nomexerice) as num","exercice");
+        if(count($nom)==0){ return "null" ;}
+        $nom=$nom[0];
+        $nom['num']=$nom['num'];
+        $identifiantbase="ECX0000";
+        $str=strlen($identifiantbase)-1;
+        for($i=strlen($nom['num'])-1 ;$i > -1;$i--){
+            $identifiantbase[$str]=$nom['num'][$i];
+            $str=$str-1;
+        }
+        return  $identifiantbase;
+    }
+
     public function selectdonner($stringdonne,$nomtable){
         $string ="select ".$stringdonne." from ".$nomtable;
         $query = $this->db->query($string);

@@ -69,7 +69,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/categorie/0"); ?>">Categorie</a>
-                        <a class="collapse-item" href="cards.html">Aliments</a>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listealiment/0"); ?>">Aliments</a>
+                        <h6 class="collapse-header">Physique:</h6>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listeexerice/0"); ?>">Exerice physique</a>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listealiment/0"); ?>">Aliments</a>
                     </div>
                 </div>
             </li>
@@ -79,13 +82,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Regime</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/setplat"); ?>">Ajout Plat</a>
                         <a class="collapse-item" href="utilities-border.html">Borders</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
