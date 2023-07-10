@@ -72,3 +72,10 @@ INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 3, 100);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (2, 4, 120);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 5, 80);
 INSERT INTO detailPlat (idPlat, idAliment, poids) VALUES (3, 6, 90);
+
+
+#1e847f
+#ecc19c
+#000000
+
+http://127.0.0.1/Projet24h/index.php/CT_CRUD/updatacategorie?nom=Fruit&&id=1

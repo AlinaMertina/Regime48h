@@ -9,14 +9,25 @@ class CT_CRUD extends CI_Controller {
 	 }
 	public function index()
 	{
-		$this->load->view('indexhaut');
-		$this->load->view('indexgauche');
-		$this->load->view('information');
-		$this->load->view('indexbas');
+        $this->load->view('header/Header');
+		$this->load->view('index');
+		$this->load->view('header/Footer');
 	}
     public function loadpage($nompage){
         $this->load->view($nompage);
     }	
+
+    public function loadpageadmin($page){
+        $this->load->view('header/Header');
+		$this->load->view($page);
+		$this->load->view('header/Footer');
+    }
+    public function loadpageadminB($page,$data){
+        $this->load->view('header/Header');
+		$this->load->view($page,$data);
+		$this->load->view('header/Footer');
+    }
+
     public function loadpageB($nompage,$data){
         $this->load->view($nompage,$data);
     }
@@ -51,6 +62,31 @@ class CT_CRUD extends CI_Controller {
         $data=array();
         $data['genre']=$this->crud->selectAll("genres");
         $this->loadpageB("inscription",$data);
+    }
+
+    public function insertCategorie(){
+        if(isset($_POST["categorie"])){
+            $tabe= array(array($_POST["categorie"],'%s'));
+            $nomtable =" CategorieAliment(nomCategorie) ";
+            $this->crud->insert($nomtable,$tabe);
+        }
+        $this->categorie(1);
+    }
+
+    public function categorie($i){
+        $data=array();
+        $debut=$i;
+        $data=array();
+        $data['num']=$i;
+        $data["categorie"]=$this->crud->selectAll( "CategorieAliment limit ".$debut.",5");
+        $this->loadpageadminB("Aliment/listCategorie",$data);
+    }
+    public function updatacategorie(){
+        if($_GET['nom']){
+            $tabe=array(array('nomCategorie',$_GET['nom'],'%s'));
+            $this->crud-> update("CategorieAliment ",$tabe,'idCategorie='.$_GET['id']);
+        }
+        $this->categorie(1);
     }
 
 
