@@ -70,9 +70,10 @@
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/categorie/0"); ?>">Categorie</a>
                         <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listealiment/0"); ?>">Aliments</a>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listeregimeA/0"); ?>">Regime Alimentaire</a>
                         <h6 class="collapse-header">Physique:</h6>
                         <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listeexerice/0"); ?>">Exerice physique</a>
-                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listealiment/0"); ?>">Aliments</a>
+                        <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/listeregimeP/0"); ?>">Regime Physique</a>
                     </div>
                 </div>
             </li>
@@ -89,7 +90,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="<?php echo base_url("index.php/CT_CRUD/setplat"); ?>">Ajout Plat</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-border.html">Ajout Regime Alimentaire</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>

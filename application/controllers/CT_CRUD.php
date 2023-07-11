@@ -19,6 +19,11 @@ class CT_CRUD extends CI_Controller {
         $this->load->view($nompage);
     }	
 
+    public function loadpageclient($page){
+        $this->load->view('header/Header');
+		$this->load->view($page);
+		$this->load->view('header/Footer');
+    }
 
     public function loadpageadmin($page){
         $this->load->view('header/Header');
@@ -39,12 +44,26 @@ class CT_CRUD extends CI_Controller {
         if(isset($_POST["nom"])){
             if(  $this->crud->login($_POST["nom"],$_POST["mdp"] )== true)
             {
-                    echo "nety";
+                    $info=$this->crud->selectdonner("idutilisateurs","utilisateurs where nom='".$_POST["nom"]."' and mdp='".$_POST["mdp"]."'");
+                    $_SESSION['idutilisateur']=$info[0]['idutilisateurs'];
+                    redirect(base_url("index.php/CT_Client/accuiel"));
             }else{
                 $this->loadpage("login");
             }
         }
     }	
+    public function loginAdmin(){
+        if(isset($_POST["nom"])){
+            if( count($this->crud->selectdonner("idadmin","admin where nomadmin='".$_POST["nom"]."' and mdp='".$_POST["mdp"]."'"))>0)
+            {
+                    $info=$this->crud->selectdonner("idadmin","admin where nomadmin='".$_POST["nom"]."' and mdp='".$_POST["mdp"]."'");
+                    $_SESSION['idutilisateur']=$info[0]['idadmin'];
+                   $this->loadpageadmin("index.php");
+            }else{
+                $this->loadpage("login");
+            }
+        }
+    }
     public function setinscription(){
         if(isset($_POST['nom'])){
             $tabe=array();
@@ -58,6 +77,10 @@ class CT_CRUD extends CI_Controller {
             $tabe[7]= array($this->crud->identifiant(),'%s');
             $nomtable="utilisateurs (nom,mail,mdp,date_naissance,idgenre,taille,poids,idutilisateurs)";
             $this->crud->insert($nomtable,$tabe);
+
+            $info=$this->crud->selectdonner("idutilisateurs","utilisateurs where nom='".$_POST["nom"]."' and mdp='".$_POST["mdp"]."'");
+            $_SESSION['idutilisateur']=$info[0]['idutilisateurs'];
+            redirect(base_url("index.php/CT_Client/accuiel"));
         }
     }
     public function inscription(){
@@ -197,9 +220,54 @@ class CT_CRUD extends CI_Controller {
         }
        // $this->listeexerice(0);
     }
+    public function listeregimeA($i){
+        $data=array();
+        $data['num']=$i;
+        $data["regime"]=$this->crud->selectAll( " regime limit ".$i.",5");
+        $this->loadpageadminB("Regime/listeRegime",$data);
+    }
+    public function listeplateregime($idregime,$i){
+        $data=array();
+        $data['num']=$i;
+        $data['idregime']=$idregime;
+        $str="detailRegime.idregime,Plat.idPlat,NumeroDeJour,Heure,Plat.nomPlat,nomRegime";
+        $nomtable="detailRegime join Plat on detailRegime.idPlat=Plat.idPlat join regime on detailRegime.idRegime=regime.idregime where regime.idregime=".$idregime." order by NumeroDeJour limit ".$i.",5";
+        $data["regime"]=$this->crud->selectdonner($str,$nomtable);
+        $this->loadpageadminB("Regime/listePlatRegime",$data);
+    }
+    public function listealimentplate($idplat,$i){
+        $data=array();
+        $data['num']=$i;
+        $data['idregime']=$idplat;
+        $str="nomAliment,detailPlat.idPlat,poids,detailPlat.idAliment,nomPlat";
+        $nomtable="detailPlat join Plat on detailPlat.idPlat =Plat.idPlat join Aliment on Aliment.idAliment=detailPlat.idAliment where Plat.idPlat=".$idplat." limit ".$i.",5";
+        $data["regime"]=$this->crud->selectdonner($str,$nomtable);
+        $this->loadpageadminB("Regime/listeAlimentPlat",$data);
+
+    }
+    public function listeregimeP($i){
+        $data=array();
+        $data['num']=$i;
+        $data["regime"]=$this->crud->selectAll( " regimePhysique limit ".$i.",5");
+        $this->loadpageadminB("Regime/listeRegimeP",$data);
+    }
+    public function listeexericeP($idregime,$i){
+        $data=array();
+        $data['num']=$i;
+        $data['idregime']=$idregime;
+        $str="detaille_regimeP.idRegime,nomRegime,NumeroDeJour,quantiter,Heure,unite,detaille_regimeP.idexerice,nomexerice";
+        $nomtable="detaille_regimeP join regimePhysique on detaille_regimeP.idRegime=regimePhysique.idRegime join  exercice on exercice.idexerice = detaille_regimeP.idexerice where detaille_regimeP.idRegime=".$idregime." order by NumeroDeJour limit ".$i.",5";
+        $data["regime"]=$this->crud->selectdonner($str,$nomtable);
+        $this->loadpageadminB("Regime/listeExerciceRegime",$data);
+    }
+    public function exportA($idregime){
+        $this->crud->exportregimeAliment($idregime);
+    }
+    public function exportP($idregime){
+        $this->crud->exportregimePhysique($idregime);
+    }
 
 	public function test(){
-        echo $this->crud->identifiant();
 
     //   echo   $this->crud->concateValues(concateValues($nomtable,count($tabe)));
     }
